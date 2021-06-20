@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:music_player/src/widgets/cd_duration_line.dart';
 import 'package:music_player/src/widgets/custom_appbar.dart';
 
 class MusicPlayerPage extends StatelessWidget {
@@ -8,6 +9,7 @@ class MusicPlayerPage extends StatelessWidget {
       body: Column(
         children: [
           CustomAppBar(),
+          CdDurationLine(),
         ],
       ),
     );
