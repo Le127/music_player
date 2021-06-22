@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:animate_do/animate_do.dart';
+
 class CdDurationLine extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -81,8 +83,10 @@ class ImageCD extends StatelessWidget {
           alignment: Alignment.center,
           children: [
             //CD Image
-            Image(
-              image: AssetImage('assets/aurora.jpg'),
+            SpinPerfect(
+              child: Image(
+                image: AssetImage('assets/aurora.jpg'),
+              ),
             ),
 
             //CircleCD
