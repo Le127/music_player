@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'package:animate_do/animate_do.dart';
+import 'package:provider/provider.dart';
+import 'package:music_player/src/models/audioplayer_model.dart';
 
 class CdDurationLine extends StatelessWidget {
   @override
@@ -63,6 +65,8 @@ class ProgressLine extends StatelessWidget {
 class ImageCD extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final audioPlayerModel = Provider.of<AudioPlayerModel>(context);
+
     return Container(
       padding: EdgeInsets.all(20),
       width: 250,
@@ -82,11 +86,16 @@ class ImageCD extends StatelessWidget {
         child: Stack(
           alignment: Alignment.center,
           children: [
+            //
             //CD Image
             SpinPerfect(
-              child: Image(
-                image: AssetImage('assets/aurora.jpg'),
-              ),
+              duration: Duration(seconds: 10),
+              animate: false,
+              infinite: true,
+              manualTrigger: true,
+              controller: (animationController) =>
+                  audioPlayerModel.controller = animationController,
+              child: Image(image: AssetImage('assets/aurora.jpg')),
             ),
 
             //CircleCD

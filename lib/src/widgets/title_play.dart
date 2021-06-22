@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import 'package:provider/provider.dart';
+import 'package:music_player/src/models/audioplayer_model.dart';
+
 class TitlePlay extends StatefulWidget {
   @override
   _TitlePlayState createState() => _TitlePlayState();
@@ -52,12 +55,17 @@ class _TitlePlayState extends State<TitlePlay>
                   icon: AnimatedIcons.play_pause,
                   progress: playButtonAnimation),
               onPressed: () {
+                final audioPlayerModel =
+                    Provider.of<AudioPlayerModel>(context, listen: false);
+
                 if (this.isPlaying) {
                   playButtonAnimation.reverse();
                   this.isPlaying = false;
+                  audioPlayerModel.controller.stop();
                 } else {
                   playButtonAnimation.forward();
                   this.isPlaying = true;
+                  audioPlayerModel.controller.repeat();
                 }
               }),
         ],
