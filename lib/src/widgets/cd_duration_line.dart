@@ -26,12 +26,15 @@ class CdDurationLine extends StatelessWidget {
 class ProgressLine extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    var textStyle = TextStyle(color: Colors.white.withOpacity(0.4));
+    final textStyle = TextStyle(color: Colors.white.withOpacity(0.4));
+
+    final audioPlayerModel = Provider.of<AudioPlayerModel>(context);
+    final porcentaje = audioPlayerModel.porcentaje;
 
     return Container(
       child: Column(
         children: [
-          Text("04:23", style: textStyle),
+          Text("${audioPlayerModel.songTotalDuration}", style: textStyle),
           SizedBox(height: 7),
           Stack(
             children: [
@@ -44,14 +47,14 @@ class ProgressLine extends StatelessWidget {
                 bottom: 0,
                 child: Container(
                   width: 3,
-                  height: 100,
+                  height: 230 * porcentaje,
                   color: Colors.white.withOpacity(0.8),
                 ),
               ),
             ],
           ),
           SizedBox(height: 7),
-          Text("00:00", style: textStyle),
+          Text("${audioPlayerModel.currentSecond}", style: textStyle),
         ],
       ),
     );
